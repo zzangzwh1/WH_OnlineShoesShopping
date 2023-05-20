@@ -1,0 +1,307 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+
+* {
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: Arimo;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%;
+}
+
+.logo {
+    font-size: 30px;
+}
+
+.navmenu {
+    display: flex;
+}
+
+    .navmenu a {
+        color: #2c2c2c;
+        font-size: 16px;
+        text-transform: capitalize;
+        padding: 10px 20px;
+        font-weight: 400;
+        transition: all .42s ease;
+    }
+
+        .navmenu a:hover {
+            color: #EE1C47;
+        }
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+}
+
+    .nav-icon i {
+        margin-right: 20px;
+        color: #2c2c2c;
+        font-size: 25px;
+        font-weight: 400;
+        transition: all .42s ease;
+    }
+
+        .nav-icon i:hover {
+            transform: scale(1.1);
+            color: #EE1C47;
+        }
+
+#menu-icon {
+    font-size: 35px;
+    color: #2c2c2c;
+    z-index: 10001;
+    cursor: pointer;
+}
+
+.main-home {
+    padding: 5% 10%;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../image/nike.jpg);
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    align-items: center;
+}
+
+.main-text h5 {
+    color: #EE1C47;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.main-text h1 {
+    color: #000;
+    font-size: 65px;
+    text-transform: capitalize;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 6px 0 10px;
+}
+
+.main-btn {
+    display: inline-block;
+    color: #111;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border: 2px solid #111;
+    padding: 12px 25px;
+    transition: all .42s ease;
+}
+
+    .main-btn:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .main-btn i {
+        vertical-align: middle;
+    }
+    .down-arrow{
+        position:absolute;
+        top: 85%;
+        right :11%;
+    }
+.down i {
+    font-size: 30px;
+    color: #2c2c2c;
+    border: 2px solid #2c2c2c;
+    border-radius:50px;
+    padding:12px 12px;
+}
+    .down i:hover {
+        background-color: #2c2c2c;
+        color:#fff;
+        transition:all .42s ease;
+
+    }
+.trending-down {
+    padding: 5% 10%;
+}
+
+
+/*  Login*/
+
+/*body {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}*/
+.Logins {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+    transition: .4s ease-in-out;
+}
+
+    .form:hover {
+        transform: scale(1.05);
+        border: 1px solid black;
+    }
+
+#heading {
+    text-align: center;
+    margin: 2em;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+}
+
+.field {
+  
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.input-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: white;
+}
+
+.input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+}
+
+.form .btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+}
+
+.button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+}
+
+    .button1:hover {
+        background-color: red;
+        color: white;
+    }
+
+.button2 {
+    padding: 0.5em;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+}
+
+    .button2:hover {
+        background-color: red;
+        color: white;
+    }
+
+
+/* Log out Btn logoutBTN*/
+.logoutBTN {
+    position: relative;
+    font-size: 17px;
+    text-transform: uppercase;
+    text-decoration: none;
+     padding: 0.2em 2em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    color: black;
+    background-color: white;
+}
+
+    .logoutBTN:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        color:red;
+        cursor:pointer;
+    }
+
+    .logoutBTN:active {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logoutBTN::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+
+    .logoutBTN::after {
+        background-color: #fff;
+    }
+
+    .logoutBTN:hover::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+    }
