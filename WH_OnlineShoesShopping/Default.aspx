@@ -4,10 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Main</title>
+    <title>Online Shoes Shopping
+    </title>
     <link href="css/StyleSheet1.css" rel="stylesheet" />
     <link rel="stylesheet"
         href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d0289bdfad.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -16,10 +18,11 @@
             <a href="Default.aspx" class="logo">MC</a>
             <ul class="navmenu">
                 <li><a href="#main-home">
-                    <asp:Label Text="home" runat="server" /> </a></li>
+                    <asp:Label Text="home" runat="server" />
+                </a></li>
                 <li><a href="#trending">
                     <asp:Label Text="Shop" runat="server" /></a></li>
-                <li><a href="#Logins" >
+                <li><a href="#Logins">
                     <asp:Label Text="login" runat="server" ID="_loggedInOrNot" /><asp:Button Text="LogOut" runat="server" ID="_logOutBtn" CssClass="logoutBTN" OnClick="_logOutBtn_Click" /></a></li>
             </ul>
             <div class="nav-icon">
@@ -32,24 +35,46 @@
             </div>
 
         </header>
-    
+
 
         <section class="main-home" id="main-home">
-            <div class="main-text">
-                <h5>Brand New</h5>
-                <h1>Just Do It</h1>
-                <a href="#" class="main-btn">Shop Now<i class='bx bx-right-arrow-alt'></i></a>
-            </div>
+           
             <div class="down-arrow">
                 <a href="#trending" class="down"><i class='bx bx-down-arrow-alt'></i></a>
             </div>
         </section>
+        <br />
 
         <section class="trending-down" id="trending">
-            <div class="center-text">
-                <h2>Our <span>Shoes</span></h2>
+            <div classs="product-container">
+                <div class="center-text">
+                    <h2>Our <span>Shoes</span></h2>
+                </div>
+                <br />
+                <div class="products-div">
+                    <asp:Repeater runat="server" ID="_productItemsDisplay">
+                        <ItemTemplate>
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" />
+                                </div>
+                                <div class="namePrice">
+                                    <asp:Label Text='<%#Eval("productName")%>' runat="server" />
+                                    <span class="spanProductPrice">
+                                        <asp:Label Text='<%#string.Concat("$", Eval("productPrice", "{0:0.00}")) %>' runat="server" />
+                                    </span>
+                                </div>
+                                <div class="buy">
+                                    <asp:Button Text="Buy Now" runat="server" CssClass="buyButton" />
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+
+
             </div>
-            <div class="products"></div>
+      
 
         </section>
 
@@ -64,19 +89,19 @@
                             </svg>
                             <asp:TextBox runat="server" CssClass="input-field" placeholder="ID" ID="_username" />
                         </div>
-                      
+
                         <div class="field">
                             <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
                             </svg>
                             <asp:TextBox runat="server" CssClass="input-field" placeholder="Password" TextMode="Password" ID="_userPassword" />
                         </div>
-                       <div>
-                              <asp:Label Text="" runat="server" ID="_lbl_failLogin" />
+                        <div>
+                            <asp:Label Text="" runat="server" ID="_lbl_failLogin" />
                         </div>
                         <div class="btn">
                             <asp:Button Text="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" runat="server" CssClass="button1" ID="_LoginBTN" OnClick="_LoginBTN_Click" />
-                            <asp:Button Text="Sign Up" runat="server" OnClick="SignUp_Click1" CssClass="button2"  />
+                            <asp:Button Text="Sign Up" runat="server" OnClick="SignUp_Click1" CssClass="button2" />
 
                         </div>
 
@@ -172,8 +197,8 @@
                         <div class="field">
                         </div>
                         <div class="btn">
-                
-                            <asp:Button Text="Register" runat="server"  CssClass="button2" ID="RegisterBTN" OnClick="RegisterBTN_Click" />
+
+                            <asp:Button Text="Register" runat="server" CssClass="button2" ID="RegisterBTN" OnClick="RegisterBTN_Click" />
 
                         </div>
 

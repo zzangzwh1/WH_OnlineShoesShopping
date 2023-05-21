@@ -115,50 +115,33 @@ namespace WH_OnlineShoesShopping.NewFolder1
                 }
             }
         }
-        /*     public static Tuple<bool, string> LogIn(string userID, string password)
-             {
-                 string query = "select * from Member where username =@username and password =@password";
-                 using (SqlConnection conn = new SqlConnection(sConnection))
-                 {
-                     using (SqlCommand command = new SqlCommand(query, conn))
-                     {
-                         command.Parameters.AddWithValue("username", userID);
-                         command.Parameters.AddWithValue("password", password);
-                         SqlDataAdapter sda = new SqlDataAdapter(command);
-                         DataTable dt = new DataTable();
-                         sda.Fill(dt);
 
-                         conn.Open();
-
-                         try
-                         {
-                             command.ExecuteNonQuery();
-                             System.Diagnostics.Debug.Write("success Login");
-                         }
-                         catch (Exception err)
-                         {
-                             System.Diagnostics.Debug.Write("Fail to execute non query from Sign up: " + err.Message);
-                         }
-                         finally
-                         {
-                             conn.Close();
-                         }
-
-                         if (dt.Rows.Count > 0)
-                         {// Admin , admin
-                             string s = "";
-                             s = (from DataRow dr in dt.Rows
-                                  where ((string)dr.ItemArray[3]).ToLower() == userID.ToLower()
-                                  select dr.ItemArray[3]).First().ToString();
-
-                             return Tuple.Create(true, s);
-                         }
-
-                         return Tuple.Create(false, "");
-                     }
-                 }
-             }*/
         #endregion
+
+        public static DataTable GetDataTable(string query)
+        {
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    // execute sqlcommand
+                    dataCommand.ExecuteNonQuery();
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(dataCommand);
+
+                    // fill datatable
+                    da.Fill(dt);
+
+                    return dt;
+                }
+            }
+
+
+        }
     }
 }
 

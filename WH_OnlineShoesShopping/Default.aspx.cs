@@ -23,6 +23,8 @@ namespace WH_OnlineShoesShopping
             {
                 
               _mWizard.SetActiveView(_vLogin);
+                _productItemsDisplay.DataSource = OnlineShpping.GetDataTable("Select * from Product");
+                _productItemsDisplay.DataBind();
                 if (Session["user"] != null)
                 {
                     // User is logged in
@@ -33,7 +35,8 @@ namespace WH_OnlineShoesShopping
                     _mWizard.Visible = false;
                     _logOutBtn.Visible = true;
                     _loggedInOrNot.Text = string.Empty;
-
+                    
+                    
 
                 }
                 else
