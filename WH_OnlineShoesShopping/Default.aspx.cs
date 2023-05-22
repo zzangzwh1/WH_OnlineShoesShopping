@@ -18,7 +18,7 @@ namespace WH_OnlineShoesShopping
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+            Debug.WriteLine("This is a debug message.");
             if (!IsPostBack)
             {
                 
@@ -28,18 +28,18 @@ namespace WH_OnlineShoesShopping
                 if (Session["user"] != null)
                 {
                     // User is logged in
-                    string username = Session["user"].ToString();
+                    //string username = Session["user"].ToString();
                     // Perform actions for logged-in user
-                    _LoggedIn.Text = username;
-                    _LoggedIn.ForeColor = Color.Red;
+                   // _LoggedIn.Text = username;
+                    //_LoggedIn.ForeColor = Color.Red;
                     _mWizard.Visible = false;
-                    _logOutBtn.Visible = true;
-                    _loggedInOrNot.Text = string.Empty;
+                   // _logOutBtn.Visible = true;
+                   // _loggedInOrNot.Text = string.Empty;
                     
                     
 
                 }
-                else
+               /* else
                 {
                     // User is not logged in
                     // Perform actions for anonymous user
@@ -49,7 +49,7 @@ namespace WH_OnlineShoesShopping
 
 
                 }
-               
+               */
 
 
             }
@@ -116,11 +116,31 @@ namespace WH_OnlineShoesShopping
                 _mWizard.SetActiveView(_vLogin);
             }
         }
-
-        protected void _logOutBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// when image click it will pass the product ID and will retrieved from when whe product image clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void _productImageBTN_Click(object sender, ImageClickEventArgs e)
         {
-            Session.Clear();
-            Response.Write("<Script>alert('You are successfully Signed out!'); window.location = 'Default.aspx'</Script>");
+            string imgBtn = $"Products.aspx?productId={((ImageButton)sender).CommandArgument.ToString()}";
+            Debug.WriteLine(imgBtn);
+            Response.Redirect(imgBtn, false);
+        }
+        /// <summary>
+        /// when buy now buy now button click product id will be binded and open the products page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void _productBuy_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            string productId = button.CommandArgument;
+
+            // Assuming you have a page named "Product.aspx" where you display the product details
+            string productPageUrl = $"Products.aspx?productId={productId}";
+            Debug.WriteLine(productPageUrl);
+            Response.Redirect(productPageUrl);
         }
     }
 }

@@ -1,44 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WH_OnlineShoesShopping.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WH_OnlineShoesShopping.WebForm1" MasterPageFile="~/Site1.Master" Title="Default Page" %>
 
-<!DOCTYPE html>
+<asp:Content ID="DefaultPage" runat="server" ContentPlaceHolderID="Main">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Online Shoes Shopping
-    </title>
-    <link href="css/StyleSheet1.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/d0289bdfad.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <header>
-            <a href="Default.aspx" class="logo">MC</a>
-            <ul class="navmenu">
-                <li><a href="#main-home">
-                    <asp:Label Text="home" runat="server" />
-                </a></li>
-                <li><a href="#trending">
-                    <asp:Label Text="Shop" runat="server" /></a></li>
-                <li><a href="#Logins">
-                    <asp:Label Text="login" runat="server" ID="_loggedInOrNot" /><asp:Button Text="LogOut" runat="server" ID="_logOutBtn" CssClass="logoutBTN" OnClick="_logOutBtn_Click" /></a></li>
-            </ul>
-            <div class="nav-icon">
-                <a href="#"><i class='bx bx-search-alt-2'></i></a>
-                <a href="#"><i class='bx bx-user'>
-                    <asp:Label Text="" runat="server" ID="_LoggedIn" Font-Size="10px" /></i></a>
-                <a href="#"><i class='bx bx-cart'></i></a>
+    <section class="main-home" id="main-home">
 
-                <div class="bx bx-menu" id="menu-icon"></div>
-            </div>
-
-        </header>
-
-
-        <section class="main-home" id="main-home">
-           
             <div class="down-arrow">
                 <a href="#trending" class="down"><i class='bx bx-down-arrow-alt'></i></a>
             </div>
@@ -56,7 +21,8 @@
                         <ItemTemplate>
                             <div class="product-item">
                                 <div class="product-image">
-                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" />
+                                
+                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" ID="_productImageBTN" OnClick="_productImageBTN_Click" />
                                 </div>
                                 <div class="namePrice">
                                     <asp:Label Text='<%#Eval("productName")%>' runat="server" />
@@ -65,7 +31,7 @@
                                     </span>
                                 </div>
                                 <div class="buy">
-                                    <asp:Button Text="Buy Now" runat="server" CssClass="buyButton" />
+                                    <asp:Button Text="Buy Now" runat="server" CssClass="buyButton" ID="_productBuy" OnClick="_productBuy_Click" CommandArgument='<%# Eval("productId") %>'/>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -74,7 +40,7 @@
 
 
             </div>
-      
+
 
         </section>
 
@@ -206,11 +172,8 @@
             </asp:View>
 
         </asp:MultiView>
-
-    </form>
-
+ </asp:Content>
 
 
-</body>
-</html>
+
 
