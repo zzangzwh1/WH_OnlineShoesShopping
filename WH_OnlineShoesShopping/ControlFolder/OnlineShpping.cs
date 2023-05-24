@@ -142,6 +142,124 @@ namespace WH_OnlineShoesShopping.NewFolder1
 
 
         }
+        public static string GetFullName(string username)
+        {
+            string sqlQuery = "SELECT name FROM Member WHERE name = @username";
+            string fullName = "";
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    dataCommand.Parameters.AddWithValue("@username", username);
+
+                    conn.Open();
+
+                    try
+                    {
+                        SqlDataReader dr = dataCommand.ExecuteReader();
+
+                        if (dr.Read())
+                        {
+                            fullName = dr["name"].ToString();
+                        }
+
+                        Debug.WriteLine("Success: Full name retrieved");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.WriteLine("Error: Failed to retrieve full name - " + err.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+
+            return fullName;
+        }
+        #region Insert Data into Board
+        public static bool SubmitReview(string username, string content, int grade, int productID)
+        {
+            //insert into Board(memberID, content, boardDate, grade, productID)
+            //select memberID, 'test', GETDATE(), 3, 4
+            //from Member
+            //where username = 'yyoo2'
+            string s = "";
+            DateTime dateTime = DateTime.Now;
+           
+            string sqlQuery = "INSERT INTO board(memberId, content, grade, productId, boardDate) "
+                            + "SELECT memberID, @content,  @grade, @productId,@boardDate "  
+                            + "FROM Member "
+                            + $"where username = '{username}'";
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    dataCommand.Parameters.AddWithValue("@content", content);
+                    dataCommand.Parameters.AddWithValue("@grade", grade);
+                    dataCommand.Parameters.AddWithValue("@productId", productID);
+                    dataCommand.Parameters.AddWithValue("@boardDate", dateTime);
+                    
+
+                    conn.Open();
+
+
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                        Debug.Write("success to submit reveiw");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Fail to submit reveiw: " + err.Message);
+                        return false;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return true;
+                }
+            }
+        }
+        #endregion
+        #region ContentDelete
+        public static bool BoardDeleteBtn(int boardNum)
+        {
+            // query to delete review from board table
+            string sqlQuery = $" delete from board"
+                            + $" where boardNo = {boardNum}";
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+
+                    conn.Open();
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Error from [BoardDeleteBtn]: " + err.Message);
+                        return false;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return true;
+                }
+            }
+
+        }
+        #endregion
     }
 }
 

@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -63,7 +66,10 @@
   <ItemGroup>
     <Content Include="css\StyleSheet1.css" />
     <Content Include="Header.ascx" />
+    <Content Include="image\Emptystar.png" />
+    <Content Include="image\Filledstar.png" />
     <Content Include="image\nike.jpg" />
+    <Content Include="image\waitingstar.png" />
     <Content Include="Logout.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="Web.config" />
@@ -110,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site1.Master" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

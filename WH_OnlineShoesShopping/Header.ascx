@@ -6,9 +6,9 @@
         <li><a href="#main-home">
             <asp:Label Text="home" runat="server" />
         </a></li>
-        <li><a href="#trending">
+        <li><a href="Default.aspx#trending">
             <asp:Label Text="Shop" runat="server" /></a></li>
-        <li><a id="_myLink" runat="server" href="#Logins">
+        <li><a id="_myLink" runat="server" href="Default.aspx#Logins">
             <asp:Label Text="login" runat="server" ID="_loggedInOrNot" CssClass="clickable-label" /></a></li>
         <li>
     </ul>
