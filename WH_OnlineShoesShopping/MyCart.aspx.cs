@@ -154,7 +154,7 @@ namespace WH_OnlineShoesShopping
                 {
                     Debug.WriteLine($"This is Session in mycart : {Session["user"]}");
                     string sQuery =
-                   "select p.productName, p.productPrice,p.productBrand,p.productImage,p.productSize  "
+                   "select p.productName, p.productPrice,p.productBrand,p.productImage,p.productSize,p.productId,c.amount  "
                  + "from Cart c "
                  + "join Member m on m.memberId = c.memberId "
                  + "join product p on p.productId = c.productId "
@@ -170,8 +170,8 @@ namespace WH_OnlineShoesShopping
                     // item count
                     int totalItemCount = 0;
                     double totalItemPrice = 0;
-
-             /*       // loop items in datalist
+                    string sss = "";
+                    // loop items in datalist
                     for (int i = 0; i < _dlMyCart.Items.Count; i++)
                     {
                         // find dropdownlist control
@@ -182,8 +182,8 @@ namespace WH_OnlineShoesShopping
                         // count quantity of total items in cart
                         totalItemCount += Convert.ToInt32(dt.Rows[i]["amount"]);
                         // count price of total items in cart
-                        totalItemPrice += Convert.ToDouble(dt.Rows[i]["Price"]) * Convert.ToInt32(dt.Rows[i]["amount"]);
-                    }*/
+                        totalItemPrice += Convert.ToDouble(dt.Rows[i]["productPrice"]) * Convert.ToInt32(dt.Rows[i]["amount"]);
+                    }
 
 
                     e_MyCart_subTotal.Text = "Subtotal(" + totalItemCount + "items): $" + totalItemPrice;
@@ -199,7 +199,8 @@ namespace WH_OnlineShoesShopping
             // client ID start with => Main_e_MyCart_dl_e_Mycart_remove_[n]
             // ex : first ddl = Main_e_MyCart_dl_e_MyCart_ddl_quantity_0
             // ex : first remove btn = Main_e_MyCart_dl_e_Mycart_remove_0
-            string s = "Main_e_MyCart_dl_e_Mycart_remove_" + ddl.ClientID.Last();
+     
+            string s = "Main__dlMyCart_e_Mycart_remove_" + ddl.ClientID.Last();
             string productID = "";
 
             // loop items in datalist
@@ -207,6 +208,8 @@ namespace WH_OnlineShoesShopping
             {
                 // find remove button
                 Button btn = (Button)_dlMyCart.Items[i].FindControl("e_Mycart_remove");
+               // Debug.WriteLine($"Btton")
+                Debug.WriteLine($"This is BTN ID  , {btn.ID}  Client ID : {btn.ClientID} ");
 
                 // check clicked button and save productID from button's commandargument 
                 if (btn.ClientID == s)
@@ -221,7 +224,7 @@ namespace WH_OnlineShoesShopping
                 Response.Write("<Script>alert('fail to update quantity')</Script>");
         }
 
-       /* protected void e_Mycart_remove_Click(object sender, EventArgs e)
+        protected void e_Mycart_remove_Click(object sender, EventArgs e)
         {
             //get productID from CommandArgument property of each buttons
             string ProductID = ((Button)sender).CommandArgument.ToString();
@@ -238,6 +241,24 @@ namespace WH_OnlineShoesShopping
                 Response.Write("<Script>alert('fail to remove item')</Script>");
             }
         }
-       */
+
+        /* protected void e_Mycart_remove_Click(object sender, EventArgs e)
+         {
+             //get productID from CommandArgument property of each buttons
+             string ProductID = ((Button)sender).CommandArgument.ToString();
+
+             bool itemdeletion = OnlineShpping.RemoveCartItem(Convert.ToInt32(ProductID), Session["user"].ToString());
+
+             if (itemdeletion)
+             {
+                 Response.Write("<Script>alert('item removed successfully')</Script>");
+                 Server.Transfer("MyCart.aspx");
+             }
+             else
+             {
+                 Response.Write("<Script>alert('fail to remove item')</Script>");
+             }
+         }
+        */
     }
 }

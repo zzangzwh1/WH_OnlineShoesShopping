@@ -316,7 +316,7 @@ namespace WH_OnlineShoesShopping.NewFolder1
             sqlQuery += "join Member m on m.memberId = c.memberId ";
             sqlQuery += "where productId = @productID and m.username = @username ";
 
-            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings[sConnection].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(sConnection))
             {
                 using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
                 {
@@ -352,13 +352,13 @@ namespace WH_OnlineShoesShopping.NewFolder1
             string sqlQuery = "delete Cart ";
             sqlQuery += "from Cart c ";
             sqlQuery += "join Member m on m.memberId = c.memberId ";
-            sqlQuery += "where productId = @ProductID and m.username = @username ";
+            sqlQuery += "where productId = @productId and m.username = @username ";
 
-            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings[sConnection].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(sConnection))
             {
                 using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
                 {
-                    dataCommand.Parameters.AddWithValue("@productID", productID);
+                    dataCommand.Parameters.AddWithValue("@productId", productID);
                     dataCommand.Parameters.AddWithValue("@username", username);
 
                     conn.Open();

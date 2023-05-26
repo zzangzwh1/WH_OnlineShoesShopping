@@ -25,10 +25,26 @@
                         <asp:Label Text='<%# Eval("productPrice") %>' runat="server" />
                     </div>
                      
-
+                    <div>
+                        <asp:DropDownList runat="server" ID="e_MyCart_ddl_quantity" AutoPostBack="true" OnSelectedIndexChanged="e_MyCart_ddl_quantity_SelectedIndexChanged">
+                                     <asp:ListItem Text="1" Value="1" />
+                                <asp:ListItem Text="2" Value="2" />
+                                <asp:ListItem Text="3" Value="3" />
+                                <asp:ListItem Text="4" Value="4" />
+                                <asp:ListItem Text="5" Value="5" />
+                                <asp:ListItem Text="6" Value="6" />
+                                <asp:ListItem Text="7" Value="7" />
+                                <asp:ListItem Text="8" Value="8" />
+                                <asp:ListItem Text="9" Value="9" />
+                        </asp:DropDownList>
+                    </div>
+                      <div>
+                <asp:Button Text="Remove" runat="server" ID="e_Mycart_remove" CommandName="delete" CommandArgument='<%#Eval("productId") %>' OnClick="e_Mycart_remove_Click" />
+            </div>
                  
                 </ItemTemplate>
             </asp:DataList>
+          
 
 
         </div>
