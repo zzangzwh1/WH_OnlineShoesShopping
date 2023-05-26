@@ -260,6 +260,129 @@ namespace WH_OnlineShoesShopping.NewFolder1
 
         }
         #endregion
+
+        public static bool InsertOrUpdateCart(int productId, string username)
+        {
+            string sqlQuery = "declare @memID int ";
+            sqlQuery += "SELECT @memID = memberId ";
+            sqlQuery += "FROM Member ";
+            sqlQuery += "where username = '" + username + "' ";
+            sqlQuery += "if not exists (select * from Cart where productId = " + productId + " and memberId = @memID ) ";
+            sqlQuery += "   begin ";
+            sqlQuery += "   insert into Cart values (@productID,@memID, @amount ) ";
+            sqlQuery += "   end ";
+            sqlQuery += "else ";
+            sqlQuery += "   update Cart ";
+            sqlQuery += "   set amount = amount + @amount ";
+            sqlQuery += "   where memberId = @memID and productId = @productID ";
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    //dataCommand.Parameters.AddWithValue("@memberID", memberID);
+                    dataCommand.Parameters.AddWithValue("@productID", productId);
+                    dataCommand.Parameters.AddWithValue("@amount", 1);
+
+                    conn.Open();
+
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                        Debug.Write("success to inserting item in cart");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Fail to add item to cart: " + err.Message);
+                        return false;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        #region
+        public static bool UpdateCartItemQantity(int productID, int newquantity, string username)
+        {
+
+            string sqlQuery = "update Cart ";
+            sqlQuery += "set amount = @newquantity ";
+            sqlQuery += "from Cart c ";
+            sqlQuery += "join Member m on m.memberId = c.memberId ";
+            sqlQuery += "where productId = @productID and m.username = @username ";
+
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings[sConnection].ConnectionString))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    dataCommand.Parameters.AddWithValue("@productID", productID);
+                    dataCommand.Parameters.AddWithValue("@newquantity", newquantity);
+                    dataCommand.Parameters.AddWithValue("@username", username);
+
+                    conn.Open();
+
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                        Debug.Write("success to update item quantity from cart");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Fail to update item quantity from cart: " + err.Message);
+                        return false;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return true;
+                }
+            }
+        }
+        #endregion
+        // delete selected item from cart
+        public static bool RemoveCartItem(int productID, string username)
+        {
+            string sqlQuery = "delete Cart ";
+            sqlQuery += "from Cart c ";
+            sqlQuery += "join Member m on m.memberId = c.memberId ";
+            sqlQuery += "where productId = @ProductID and m.username = @username ";
+
+            using (SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings[sConnection].ConnectionString))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    dataCommand.Parameters.AddWithValue("@productID", productID);
+                    dataCommand.Parameters.AddWithValue("@username", username);
+
+                    conn.Open();
+
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                        Debug.Write("success to delete item from cart");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Fail to delete item from cart: " + err.Message);
+                        return false;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return true;
+                }
+            }
+        }
+
     }
 }
 

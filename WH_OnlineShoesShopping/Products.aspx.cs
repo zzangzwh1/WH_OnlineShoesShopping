@@ -39,13 +39,13 @@ namespace WH_OnlineShoesShopping
                     _ReviewWriteOwner.Text = Session["user"].ToString();
                     //  string username = OnlineShpping.GetFullName()
                     // _SessionUserName.Text = 
-                     isValidBtn();
+                    isValidBtn();
                     review_BT.Enabled = true;
-                 
+
 
                 }
                 else
-                { 
+                {
                     UpdatePanel1.Visible = false;
                     _ReviewWriteOwner.Text = "";
                     review_username.Visible = false;
@@ -83,7 +83,7 @@ namespace WH_OnlineShoesShopping
 
         protected void _deleteBtnForAdmin_Click(object sender, EventArgs e)
         {
-           
+
             Button btn = (Button)sender;
             string selectedProduct = Request.QueryString["productId"];
 
@@ -143,6 +143,29 @@ namespace WH_OnlineShoesShopping
             }
             else
                 Debug.WriteLine("Error from [products.aspx.cs] : No proudct ID");
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            // retrieve productID from querystring
+            string selectedProduct = Request.QueryString["productId"];
+            if (Session["user"] == null)
+            {
+                Response.Write("<Script>alert('You must login to purchase item'); window.location = 'Default.aspx#Logins'</Script>");
+                return;
+            }
+            string s = "";
+            bool buyItem =
+               OnlineShpping.InsertOrUpdateCart(Convert.ToInt32(selectedProduct), Session["user"].ToString());
+
+
+
+            if (buyItem)
+                Response.Redirect("MyCart.aspx", false);
+            else
+                Response.Write("<Script>alert('Fail to buy product')</Script>");
+
+
         }
     }
 }

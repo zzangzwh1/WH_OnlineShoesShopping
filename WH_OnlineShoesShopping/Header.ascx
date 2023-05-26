@@ -14,7 +14,7 @@
     </ul>
 
     <div class="nav-icon">
-        <a href="#"><i class='bx bx-search-alt-2'></i></a>
+
         <a href="#"><i class='bx bx-user'>
             <asp:Label Text="" runat="server" ID="_LoggedIn" Font-Size="10px" /></i></a>
         <a href="#"><i class='bx bx-cart'></i></a>
