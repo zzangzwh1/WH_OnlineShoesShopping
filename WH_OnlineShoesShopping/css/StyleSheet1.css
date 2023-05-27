@@ -684,4 +684,53 @@ header {
     border: 1px solid red;
 }
 
+/* Cart Page*/
+.myCart-Label{
+    color: red;
+    font-size:30px
+}
+#myCart-Section {
+    padding: 100px;
+    display: grid;
+    justify-content: center;
+}
+#myCart-Item {
+   
+    display: flex;
+    justify-content: center;
+}
+.myCart-btn{
+    width:100px;
+    height:40px;
+    background-color: red;
+    color:white;
+    
+}
+.myCart-btn:hover{
+    background-color:#fff;
+    color:red;
+    cursor:pointer;
+}
+.e_MyCart_totalPrice{
+    font-size:20px;
+    color:red;
+}
+#btn-purchase{
+    display:grid;
+    justify-content:center;
+}
+.myCart-purchase {
+    width: 250px;
+    height: 50px;
+    font-size: 40px;
+    background-color:red;
+    color: red;
+    cursor: pointer;
+    color:white;
+}
+    .myCart-purchase:hover {
+        background-color: #fff;
+        color: red;
+        cursor: pointer;
+    }
   

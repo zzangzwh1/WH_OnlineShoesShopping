@@ -6,16 +6,18 @@
             <asp:Label Text="My Shopping Cart" runat="server" CssClass="myCart-Label" />
 
         </div>
+        <br />
+        <br />
         <div id="myCart-Item">
             <asp:DataList runat="server" ID="_dlMyCart">
                 <ItemTemplate>
                     <div>
-                        <asp:Image ImageUrl='<%#  Eval("productImage") %>' runat="server"    />
+                        <asp:Image ImageUrl='<%#  Eval("productImage") %>' runat="server" Width="200px"    />
+                    </div>
+                    <div>
                     </div>
                     <div>
                         <asp:Label Text='<%# Eval("productBrand") %>' runat="server" />
-                    </div>
-                    <div>
                         <asp:Label Text='<%# Eval("productName") %>' runat="server" />
                     </div>
                     <div>
@@ -38,10 +40,12 @@
                                 <asp:ListItem Text="9" Value="9" />
                         </asp:DropDownList>
                     </div>
+              
+
                       <div>
-                <asp:Button Text="Remove" runat="server" ID="e_Mycart_remove" CommandName="delete" CommandArgument='<%#Eval("productId") %>' OnClick="e_Mycart_remove_Click" />
+                <asp:Button Text="Remove" runat="server" ID="e_Mycart_remove" CommandName="delete" CommandArgument='<%#Eval("productId") %>' OnClick="e_Mycart_remove_Click" CssClass="myCart-btn" />
             </div>
-                 
+                       <br />
                 </ItemTemplate>
             </asp:DataList>
           
@@ -50,6 +54,10 @@
         </div>
         <div>
               <asp:Label ID="e_MyCart_subTotal" Text="" runat="server" CssClass="e_MyCart_totalPrice" />
+        </div>
+        <br />
+        <div id="btn-purchase">
+            <asp:Button Text="Buy" runat="server" CssClass="myCart-purchase" />
         </div>
 
     </section>
