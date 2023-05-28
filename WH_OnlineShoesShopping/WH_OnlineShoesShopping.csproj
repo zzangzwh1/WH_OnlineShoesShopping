@@ -53,7 +53,7 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Stripe.net, Version=41.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stripe.net.41.18.0-beta.1\lib\net461\Stripe.net.dll</HintPath>
+      <HintPath>..\packages\Stripe.net.41.18.0\lib\net461\Stripe.net.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -92,6 +92,7 @@
     <Content Include="image\waitingstar.png" />
     <Content Include="Logout.aspx" />
     <Content Include="MyCart.aspx" />
+    <Content Include="PaymentSuccess.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="MyCart.aspx.designer.cs">
       <DependentUpon>MyCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSuccess.aspx.cs">
+      <DependentUpon>PaymentSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentSuccess.aspx.designer.cs">
+      <DependentUpon>PaymentSuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>

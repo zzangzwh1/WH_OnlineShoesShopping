@@ -1,6 +1,29 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyCart.aspx.cs" Inherits="WH_OnlineShoesShopping.MyCart" Title="My Cart" MasterPageFile="~/Site1.Master" %>
-
+  <%--payment api - stripe--%>
 <asp:Content ID="DefaultPage" runat="server" ContentPlaceHolderID="Main">
+<script src="https://js.stripe.com/v3/"></script>
+
+    <script type="text/javascript">
+        function Payment() {
+            //get masterpage form id
+            var masterFormId = document.getElementById("MasterForm").id;
+            // create stripe object with publishable key
+            var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+            // getelement using form from master page
+            var form = document.getElementById(masterFormId);
+            // add submit event on the master page form
+            form.addEventListener('submit', function (e) {
+                // prevent default submit
+                e.preventDefault();
+                // redirect to checkout session with stripe sessionID
+                stripe.redirectToCheckout({
+                    sessionId: "<%= sessionId %>"
+                });
+            })
+ }
+    </script> 
+</script>
+
     <section id="myCart-Section">
         <div id="myCart-div">
             <asp:Label Text="My Shopping Cart" runat="server" CssClass="myCart-Label" />
@@ -57,9 +80,13 @@
         </div>
         <br />
         <div id="btn-purchase">
-            <asp:Button Text="Buy" runat="server" CssClass="myCart-purchase" />
+          
+             <button type="submit" runat="server" class="e_ProductDetail_addToCartImg" onclick="Payment()" > BuyNOW</button> 
         </div>
 
+     
+
     </section>
+       
 
 </asp:Content>

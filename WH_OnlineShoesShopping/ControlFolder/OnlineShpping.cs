@@ -188,9 +188,9 @@ namespace WH_OnlineShoesShopping.NewFolder1
             //where username = 'yyoo2'
             string s = "";
             DateTime dateTime = DateTime.Now;
-           
+
             string sqlQuery = "INSERT INTO board(memberId, content, grade, productId, boardDate) "
-                            + "SELECT memberID, @content,  @grade, @productId,@boardDate "  
+                            + "SELECT memberID, @content,  @grade, @productId,@boardDate "
                             + "FROM Member "
                             + $"where username = '{username}'";
 
@@ -202,7 +202,7 @@ namespace WH_OnlineShoesShopping.NewFolder1
                     dataCommand.Parameters.AddWithValue("@grade", grade);
                     dataCommand.Parameters.AddWithValue("@productId", productID);
                     dataCommand.Parameters.AddWithValue("@boardDate", dateTime);
-                    
+
 
                     conn.Open();
 
@@ -382,8 +382,97 @@ namespace WH_OnlineShoesShopping.NewFolder1
                 }
             }
         }
+        // show items in cart on MyCart.aspx.cs
+        public static Dictionary<string, Dictionary<string, object>> GetItemsInfoInCart(string username)
+        {
+            string sqlQuery = "select p.productName, p.productPrice, c.amount "
+                            + "FROM Cart c "
+                            + "JOIN Member m on c.memberID = m.memberID "
+                            + "Join product p on p.productId = c.productId "
+                            + $"where username = '{username}'";
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    conn.Open();
+
+                    // key : productname 
+                    // value : dict( key : column name, value : vlaue of column)
+                    Dictionary<string, Dictionary<string, object>> cartItems = new Dictionary<string, Dictionary<string, object>>();
+
+                    try
+                    {
+                        dataCommand.CommandType = CommandType.Text;
+                        SqlDataReader dr = dataCommand.ExecuteReader();
+
+                        while (dr.Read())
+                        {
+                            // temp dictionary for value of main dictionary
+                            Dictionary<string, object> info = new Dictionary<string, object>();
+                            // key : price , value : value of price
+                            info["Price"] = dr["productPrice"];
+                            // key : amount , value : value of amount
+                            info["amount"] = dr["amount"];
+                            // main dict = key : productName , value : dict (price : value , amount : value)
+                            cartItems[dr["productName"].ToString()] = info;
+                        }
+
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write($"Error from [GetItemsInfoInCart]: {err.Message}");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return cartItems;
+                }
+            }
+        }
+      
+        public static string GetUsersEmail(string username)
+        {
+            string sqlQuery = "SELECT email ";
+            sqlQuery += "FROM Member ";
+            sqlQuery += "where username = '" + username + "'";
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    conn.Open();
+
+                    string userEmail = "";
+
+                    try
+                    {
+                        dataCommand.CommandType = CommandType.Text;
+                        SqlDataReader dr = dataCommand.ExecuteReader();
+
+                        while (dr.Read())
+                        {
+                            userEmail = dr["email"].ToString();
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write($"Error from [GetUsersEmail]: {err.Message}");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return userEmail;
+                }
+            }
+        }
 
     }
 }
 
-    
+
+
