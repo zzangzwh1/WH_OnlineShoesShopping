@@ -432,7 +432,7 @@ namespace WH_OnlineShoesShopping.NewFolder1
                 }
             }
         }
-      
+
         public static string GetUsersEmail(string username)
         {
             string sqlQuery = "SELECT email ";
@@ -467,6 +467,51 @@ namespace WH_OnlineShoesShopping.NewFolder1
                     }
 
                     return userEmail;
+                }
+            }
+        }
+        /// <summary>
+        /// When logged in and whene items are in the cart then display count items 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public static int GetTotalItemCount(string username)
+        {
+            string sqlQuery = " SELECT COUNT(c.amount) AS TotalItemCount from member m ";
+            sqlQuery += "join cart c ";
+            sqlQuery += "on m.memberid = c.memberId ";
+            sqlQuery += " where m.username = @username ";         
+           
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    conn.Open();
+
+                    int totalItemCount = 0;
+
+                    try
+                    {
+                        dataCommand.CommandType = CommandType.Text;
+                        dataCommand.Parameters.AddWithValue("@username", username);
+                        SqlDataReader dr = dataCommand.ExecuteReader();
+
+                        if (dr.Read())
+                        {
+                            totalItemCount = Convert.ToInt32(dr["TotalItemCount"]);
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write($"Error from [GetUsersEmail]: {err.Message}");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    return totalItemCount;
                 }
             }
         }

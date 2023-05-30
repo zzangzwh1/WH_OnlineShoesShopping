@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WH_OnlineShoesShopping.NewFolder1;
 
 namespace WH_OnlineShoesShopping
 {
@@ -26,6 +27,11 @@ namespace WH_OnlineShoesShopping
                     //_logOutBtn.Visible = true;
                     _loggedInOrNot.Text = "Log Out";
                     _myLink.HRef = "~/LogOut.aspx";
+                    _myCart.HRef = "~/MyCart.aspx";
+                    _cartIcon.Visible = true;
+                    int itemCount = OnlineShpping.GetTotalItemCount(username);                   
+                    _text.Text = itemCount.ToString();
+                    
 
                 }
                 else

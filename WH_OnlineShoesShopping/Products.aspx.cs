@@ -167,5 +167,18 @@ namespace WH_OnlineShoesShopping
 
 
         }
+
+        protected void _AddCart_Click(object sender, EventArgs e)
+        {
+            string selectedProduct = Request.QueryString["productId"];
+            if (Session["user"] == null)
+            {
+                Response.Write("<Script>alert('You must login to purchase item'); window.location = 'Default.aspx#Logins'</Script>");
+                return;
+            }
+            bool buyItem = OnlineShpping.InsertOrUpdateCart(Convert.ToInt32(selectedProduct), Session["user"].ToString());
+            if (buyItem)
+                Response.Redirect($"Products.aspx?productId={selectedProduct}", false);
+        }
     }
 }

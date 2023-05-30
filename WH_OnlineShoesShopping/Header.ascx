@@ -17,7 +17,8 @@
 
         <a href="#"><i class='bx bx-user'>
             <asp:Label Text="" runat="server" ID="_LoggedIn" Font-Size="10px" /></i></a>
-        <a href="#"><i class='bx bx-cart'></i></a>
+        <a href="#" runat="server" id="_myCart"><i class='bx bx-cart' runat="server" id="_cartIcon" visible="false">
+            <asp:Label Text="" runat="server" ID="_text" Font-Size="10px"  ForeColor="red" /></i></a>
 
         <div class="bx bx-menu" id="menu-icon"></div>
     </div>

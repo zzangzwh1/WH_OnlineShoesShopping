@@ -45,7 +45,7 @@
 
                             <div class="product-buyBtns-container">
                                 <asp:Button Text="Buy Now" runat="server" CssClass="btn-Buynow" OnClick="Unnamed_Click"/>
-                                <asp:Button Text="Add Cart" runat="server" CssClass="btn-Buynow" />
+                                <asp:Button Text="Add Cart" runat="server" CssClass="btn-Buynow" ID="_AddCart" OnClick="_AddCart_Click" />
                             </div>
 
                         </div>
