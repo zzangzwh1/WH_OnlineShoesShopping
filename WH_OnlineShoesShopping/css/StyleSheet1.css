@@ -735,4 +735,41 @@ header {
         color: red;
         cursor: pointer;
     }
-  
+
+
+    /*payment success*/
+
+
+
+#e_Success_img {
+    display: grid;
+    justify-content: center;
+    padding: 50px;
+}
+#e_Sucess_btns {
+    display: flex;
+    gap:20px;
+    justify-content: center;
+}
+#e_Success_goHome, #e_Success_shop {
+    width: 200px;
+    height: 40px;
+
+    border-radius: 15px;
+    background-color: #fff;
+    font-family: Arimo;
+    font-size: 20px;
+    color:green;
+}
+    #e_Success_goHome:hover {
+        border: 2px solid black;
+        color: black;
+        background-color:green;
+        cursor: pointer;
+    }
+    #e_Success_shop:hover {
+        border: 2px solid black;
+        color: black;
+        background-color:green;
+        cursor: pointer;
+    }

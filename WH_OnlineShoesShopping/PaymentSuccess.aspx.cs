@@ -13,5 +13,17 @@ namespace WH_OnlineShoesShopping
         {
 
         }
+
+        protected void e_Success_goHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void e_Success_shop_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Default.aspx#trending");
+           
+        }
     }
 }
