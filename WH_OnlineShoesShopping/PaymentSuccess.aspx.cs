@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Stripe;
+using Stripe.Checkout;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WH_OnlineShoesShopping.NewFolder1;
 
 namespace WH_OnlineShoesShopping
 {
@@ -11,7 +14,17 @@ namespace WH_OnlineShoesShopping
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string s = "";
+                StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+                // create session service
+                var service = new SessionService();
+                var apiResult = service.Get(Request.QueryString["id"]);
+                decimal totalPrice = (decimal)apiResult.AmountTotal / 100;
+                OnlineShpping.InsertOrders(Session["user"].ToString(), totalPrice);
 
+            }
         }
 
         protected void e_Success_goHome_Click(object sender, EventArgs e)

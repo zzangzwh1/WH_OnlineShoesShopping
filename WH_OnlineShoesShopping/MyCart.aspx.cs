@@ -61,8 +61,8 @@ namespace WH_OnlineShoesShopping
 
                 var options = new SessionCreateOptions
                 {
-                    SuccessUrl = "https://localhost:44330/PaymentSuccess.aspx",
-                    CancelUrl = "https://localhost:44330/MyCart.aspx/success?id={CHECKOUT_SESSION_ID}",
+                    SuccessUrl = "https://localhost:44330/PaymentSuccess.aspx?id={CHECKOUT_SESSION_ID}",
+                    CancelUrl = "https://localhost:44330/MyCart.aspx",
                     Mode = "payment",
                     LineItems = itemoptions,
 

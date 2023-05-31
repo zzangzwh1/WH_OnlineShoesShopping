@@ -480,8 +480,8 @@ namespace WH_OnlineShoesShopping.NewFolder1
             string sqlQuery = " SELECT COUNT(c.amount) AS TotalItemCount from member m ";
             sqlQuery += "join cart c ";
             sqlQuery += "on m.memberid = c.memberId ";
-            sqlQuery += " where m.username = @username ";         
-           
+            sqlQuery += " where m.username = @username ";
+
 
             using (SqlConnection conn = new SqlConnection(sConnection))
             {
@@ -515,7 +515,79 @@ namespace WH_OnlineShoesShopping.NewFolder1
                 }
             }
         }
+        public static void InsertOrders(string username, decimal totalPrice)
+        {
+            // process sequence 
+            // 1. create order first => 2. insert orderitems with same orderID => 3. delete ordered items from cart
 
+            // generate random orderNumber
+
+            // declare @randomOrderNumber nvarchar(10) = CONVERT(nvarchar(10), LEFT(REPLACE(NEWID(), '-', ''), 10))
+            // while exists((select * from Orders o where o.ordernumber = @randomOrderNumber))
+            // begin
+            // set @randomOrderNumber = CONVERT(nvarchar(10), LEFT(REPLACE(NEWID(), '-', ''), 10))
+            // end
+            // insert into Orders
+            //select memberID, 1000.00
+            //from Member
+            //where username = 'testuser'
+            string sqlQuery = "DECLARE @randomOrderNumber INT ";
+            sqlQuery += " SET @randomOrderNumber = ABS(CHECKSUM(NEWID())) % 1000000";
+            sqlQuery += " WHILE EXISTS(SELECT * FROM orders o WHERE o.orderNumber = @randomOrderNumber) ";
+            sqlQuery += " BEGIN";
+            sqlQuery += " SET @randomOrderNumber = ABS(CHECKSUM(NEWID())) % 1000000 ";
+            sqlQuery += " END ";
+            sqlQuery += " INSERT INTO orders (memberID, totalPrice, orderNumber)";
+            sqlQuery += " SELECT memberID, @totalprice, @randomOrderNumber FROM Member WHERE username = @username";
+
+                                
+
+            using (SqlConnection conn = new SqlConnection(sConnection))
+            {
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    dataCommand.Parameters.AddWithValue("@username", username);
+                    dataCommand.Parameters.AddWithValue("@totalprice", totalPrice);
+
+                    conn.Open();
+
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                        Debug.Write("success to insert to Orders");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Fail to insert to Orders: " + err.Message);
+                    }
+                }
+                sqlQuery = "delete Cart ";
+                sqlQuery += "from Cart c ";
+                sqlQuery += "join Member m on m.memberID = c.memberID ";
+                sqlQuery += "where m.username = @username ";
+
+                using (SqlCommand dataCommand = new SqlCommand(sqlQuery, conn))
+                {
+                    dataCommand.Parameters.AddWithValue("@username", username);
+
+                    try
+                    {
+                        dataCommand.ExecuteNonQuery();
+                        Debug.Write("success to delete item from cart after order");
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.Write("Fail to delete item from cart after order: " + err.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+
+            }
+
+        }
     }
 }
 
