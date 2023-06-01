@@ -295,6 +295,7 @@ header {
     .button1:hover {
         background-color: red;
         color: white;
+        cursor:pointer;
     }
 
 .button2 {
@@ -312,6 +313,7 @@ header {
     .button2:hover {
         background-color: red;
         color: white;
+        cursor:pointer;
     }
 
 
@@ -394,6 +396,7 @@ header {
         background-image: linear-gradient(90deg, #53cbef 0%, #dcc66c 50%, #ffa3b6 75%, #53cbef 100%);
         animation: slidernbw 5s linear infinite;
         color: #000;
+        cursor:pointer;
     }
 
 @keyframes slidernbw {
@@ -402,16 +405,34 @@ header {
     }
 }
 
-
-
-/***************************************************************************************************************************/
-#e_ProductDetail_board {
-    /*background-color: gray;*/
-    display: grid;
-    grid-column: 2/8;
-    grid-template-areas: "content";
-    /* justify-content: center;*/
+/*Footer*/
+footer{
+    background-color:#f3f4f6;
 }
+.contact-info {
+    display: grid;
+    justify-content:center;
+}
+#mike{
+    color:green;
+    font-size:20px;
+}
+.social-icon i{
+    color:#565656;
+    font-size:20px;
+    transition:all .42s;
+}
+    .social-icon i:hover{
+        transform:scale(1.3);
+    }
+    /***************************************************************************************************************************/
+    #e_ProductDetail_board {
+        /*background-color: gray;*/
+        display: grid;
+        grid-column: 2/8;
+        grid-template-areas: "content";
+        /* justify-content: center;*/
+    }
 
 .e_ProductDetail_review_others {
     display: grid;
@@ -554,13 +575,19 @@ header {
     text-transform: uppercase;
     font-size: 25px
 }
+._productImages{
+    transition: all .40s;
+}
+._productImages:hover{
+    transform: scale(0.9);
+}
 
-    .e_ProductDetail_addToCartImg:hover {
-        color: red;
-        background-color:white;
-
-        border: 3px solid black;
-    }
+.e_ProductDetail_addToCartImg:hover {
+    color: red;
+    background-color: white;
+    cursor: pointer;
+    border: 3px solid black;
+}
 
 .e_ProductDetail_buynowBTN {
     width: 250px;
@@ -575,6 +602,7 @@ header {
 
     .e_ProductDetail_buynowBTN:hover {
         color: black;
+        cursor:pointer;
        
     }
 /*e_ProductDetail_addToCartImg:hover {
@@ -669,6 +697,7 @@ header {
     .review_deleteContentBTN:hover {
         color: red;
         box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+        cursor:pointer;
     }
 
     .review_deleteContentBTN:active {

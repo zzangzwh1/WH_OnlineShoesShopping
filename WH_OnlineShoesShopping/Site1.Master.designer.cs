@@ -49,5 +49,14 @@ namespace WH_OnlineShoesShopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Main;
+
+        /// <summary>
+        /// FooterControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WH_OnlineShoesShopping.Footer FooterControl;
     }
 }

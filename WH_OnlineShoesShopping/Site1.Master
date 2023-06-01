@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WH_OnlineShoesShopping.Site1" %>
 
 <%@ Register TagName="Header" TagPrefix="WUC" Src="~/Header.ascx" %>
-
+<%@ Register TagName="Footer" TagPrefix="WUC" Src="~/Footer.ascx" %>
 
 <!DOCTYPE html>
 
@@ -31,5 +31,6 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+     <WUC:Footer ID="FooterControl" runat="server" />
 </body>
 </html>

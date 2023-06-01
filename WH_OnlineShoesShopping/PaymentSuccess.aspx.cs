@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WH_OnlineShoesShopping.NewFolder1;
+using System.Net.Mail;
+using System.Net;
+using System.Diagnostics;
 
 namespace WH_OnlineShoesShopping
 {
@@ -16,13 +19,14 @@ namespace WH_OnlineShoesShopping
         {
             if (!IsPostBack)
             {
-                string s = "";
                 StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
                 // create session service
                 var service = new SessionService();
                 var apiResult = service.Get(Request.QueryString["id"]);
                 decimal totalPrice = (decimal)apiResult.AmountTotal / 100;
                 OnlineShpping.InsertOrders(Session["user"].ToString(), totalPrice);
+
+          
 
             }
         }

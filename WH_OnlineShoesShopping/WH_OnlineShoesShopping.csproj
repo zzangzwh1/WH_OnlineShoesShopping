@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\StyleSheet1.css" />
+    <Content Include="Footer.ascx" />
     <Content Include="Header.ascx" />
     <Content Include="image\Emptystar.png" />
     <Content Include="image\Filledstar.png" />
@@ -99,6 +100,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlFolder\OnlineShpping.cs" />
+    <Compile Include="Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Header.ascx.cs">
       <DependentUpon>Header.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

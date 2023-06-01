@@ -16,6 +16,8 @@ using System.Net;
 using System.Threading;
 using System.Drawing;
 using System.Web;
+using System.Net;
+using System.Net.Mail;
 
 namespace WH_OnlineShoesShopping.NewFolder1
 {
@@ -588,6 +590,7 @@ namespace WH_OnlineShoesShopping.NewFolder1
             }
 
         }
+        
     }
 }
 

@@ -2,6 +2,7 @@
 
 <asp:Content ID="DefaultPage" runat="server" ContentPlaceHolderID="Main">
 
+  
     <section class="main-home" id="main-home">
 
             <div class="down-arrow">
@@ -22,7 +23,7 @@
                             <div class="product-item">
                                 <div class="product-image">
                                 
-                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" ID="_productImageBTN" OnClick="_productImageBTN_Click" />
+                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" ID="_productImageBTN" OnClick="_productImageBTN_Click" CssClass="_productImages" />
                                 </div>
                                 <div class="namePrice">
                                     <asp:Label Text='<%#Eval("productName")%>' runat="server" />

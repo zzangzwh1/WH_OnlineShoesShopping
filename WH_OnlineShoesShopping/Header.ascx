@@ -20,7 +20,6 @@
         <a href="#" runat="server" id="_myCart"><i class='bx bx-cart' runat="server" id="_cartIcon" visible="false">
             <asp:Label Text="" runat="server" ID="_text" Font-Size="10px"  ForeColor="red" /></i></a>
 
-        <div class="bx bx-menu" id="menu-icon"></div>
     </div>
 
 </header>
