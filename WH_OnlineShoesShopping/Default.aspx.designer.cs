@@ -15,15 +15,6 @@ namespace WH_OnlineShoesShopping
     {
 
         /// <summary>
-        /// _productItemsDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater _productItemsDisplay;
-
-        /// <summary>
         /// _mWizard control.
         /// </summary>
         /// <remarks>
@@ -229,5 +220,14 @@ namespace WH_OnlineShoesShopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button RegisterBTN;
+
+        /// <summary>
+        /// _productItemsDisplay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater _productItemsDisplay;
     }
 }

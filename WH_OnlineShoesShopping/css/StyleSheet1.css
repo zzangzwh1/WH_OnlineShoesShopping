@@ -19,13 +19,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 10%;
+    padding: 20px 5%;
 }
 
-.logo {
-    font-size: 30px;
-}
+.logo{
 
+  border: 1px solid black;
+  border-radius:50%;
+}
+._logo {
+    font-size: 20px;
+    color:black;
+}
+#_logo2{
+    color:red;
+    font-size:15px;
+}
 .navmenu {
     display: flex;
 }

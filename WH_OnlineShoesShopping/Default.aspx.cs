@@ -60,7 +60,9 @@ namespace WH_OnlineShoesShopping
 
         protected void SignUp_Click1(object sender, EventArgs e)
         {
+           
             _mWizard.SetActiveView(_vSignUp);
+            
 
            
         }
@@ -102,6 +104,7 @@ namespace WH_OnlineShoesShopping
 
         protected void RegisterBTN_Click(object sender, EventArgs e)
         {
+          
             //char roleID, string name, string username, string password,  string email
             bool signUp = OnlineShpping.Registeration('U', _Name.Text, _ID.Text, _Password.Text, _Semail.Text);
             if (!signUp)

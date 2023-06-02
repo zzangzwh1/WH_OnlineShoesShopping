@@ -1,51 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WH_OnlineShoesShopping.WebForm1" MasterPageFile="~/Site1.Master" Title="Default Page" %>
 
 <asp:Content ID="DefaultPage" runat="server" ContentPlaceHolderID="Main">
-
-  
-    <section class="main-home" id="main-home">
-
-            <div class="down-arrow">
-                <a href="#trending" class="down"><i class='bx bx-down-arrow-alt'></i></a>
-            </div>
-        </section>
-        <br />
-
-        <section class="trending-down" id="trending">
-            <div classs="product-container">
-                <div class="center-text">
-                    <h2>Our <span>Shoes</span></h2>
-                </div>
-                <br />
-                <div class="products-div">
-                    <asp:Repeater runat="server" ID="_productItemsDisplay">
-                        <ItemTemplate>
-                            <div class="product-item">
-                                <div class="product-image">
-                                
-                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" ID="_productImageBTN" OnClick="_productImageBTN_Click" CssClass="_productImages" />
-                                </div>
-                                <div class="namePrice">
-                                    <asp:Label Text='<%#Eval("productName")%>' runat="server" />
-                                    <span class="spanProductPrice">
-                                        <asp:Label Text='<%#string.Concat("$", Eval("productPrice", "{0:0.00}")) %>' runat="server" />
-                                    </span>
-                                </div>
-                                <div class="buy">
-                                    <asp:Button Text="Buy Now" runat="server" CssClass="buyButton" ID="_productBuy" OnClick="_productBuy_Click" CommandArgument='<%# Eval("productId") %>'/>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-        <asp:MultiView runat="server" ID="_mWizard">
+     <asp:MultiView runat="server" ID="_mWizard">
             <asp:View runat="server" ID="_vLogin">
                 <aside class="Logins" id="Logins">
                     <section class="form">
@@ -170,9 +126,54 @@
                         </div>
 
                     </section>
+                    </aside>
             </asp:View>
 
         </asp:MultiView>
+  
+    <section class="main-home" id="main-home">
+
+            <div class="down-arrow">
+                <a href="#trending" class="down"><i class='bx bx-down-arrow-alt'></i></a>
+            </div>
+        </section>
+        <br />
+
+        <section class="trending-down" id="trending">
+            <div classs="product-container">
+                <div class="center-text">
+                    <h2>Our <span>Shoes</span></h2>
+                </div>
+                <br />
+                <div class="products-div">
+                    <asp:Repeater runat="server" ID="_productItemsDisplay">
+                        <ItemTemplate>
+                            <div class="product-item">
+                                <div class="product-image">
+                                
+                                    <asp:ImageButton ImageUrl='<%# Eval("productImage")%>' runat="server" CommandArgument='<%# Eval("productId") %>' Width="400px" ID="_productImageBTN" OnClick="_productImageBTN_Click" CssClass="_productImages" />
+                                </div>
+                                <div class="namePrice">
+                                    <asp:Label Text='<%#Eval("productName")%>' runat="server" />
+                                    <span class="spanProductPrice">
+                                        <asp:Label Text='<%#string.Concat("$", Eval("productPrice", "{0:0.00}")) %>' runat="server" />
+                                    </span>
+                                </div>
+                                <div class="buy">
+                                    <asp:Button Text="Buy Now" runat="server" CssClass="buyButton" ID="_productBuy" OnClick="_productBuy_Click" CommandArgument='<%# Eval("productId") %>'/>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+       
  </asp:Content>
 
 
