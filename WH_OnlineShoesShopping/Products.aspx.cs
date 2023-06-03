@@ -36,12 +36,9 @@ namespace WH_OnlineShoesShopping
                 _dl_Review.DataBind();
                 if (Session["user"] != null)
                 {
-                    _ReviewWriteOwner.Text = Session["user"].ToString();
-                    //  string username = OnlineShpping.GetFullName()
-                    // _SessionUserName.Text = 
+                    _ReviewWriteOwner.Text = Session["user"].ToString();          
                     isValidBtn();
                     review_BT.Enabled = true;
-
 
                 }
                 else

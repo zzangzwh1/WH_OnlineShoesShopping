@@ -55,8 +55,6 @@ namespace WH_OnlineShoesShopping
 
                         });
 
-                    // for debug
-                    //Debug.WriteLine(item.Key + " : " + " price : " + item.Value["Price"] + " amount : " + item.Value["amount"]);
                 }
 
                 var options = new SessionCreateOptions
@@ -70,10 +68,6 @@ namespace WH_OnlineShoesShopping
                 {
                     "card"
                 }
-
-
-
-
                 };
                 var service = new SessionService();
                 Session session = service.Create(options);

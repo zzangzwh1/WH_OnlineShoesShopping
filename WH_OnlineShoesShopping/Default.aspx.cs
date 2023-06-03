@@ -26,32 +26,11 @@ namespace WH_OnlineShoesShopping
                 _productItemsDisplay.DataSource = OnlineShpping.GetDataTable("Select * from Product");
                 _productItemsDisplay.DataBind();
                 if (Session["user"] != null)
-                {
-                    // User is logged in
-                    //string username = Session["user"].ToString();
-                    // Perform actions for logged-in user
-                   // _LoggedIn.Text = username;
-                    //_LoggedIn.ForeColor = Color.Red;
+                {           
                     _mWizard.Visible = false;
-                   // _logOutBtn.Visible = true;
-                   // _loggedInOrNot.Text = string.Empty;
-                    
-                    
-
+                 
                 }
-               /* else
-                {
-                    // User is not logged in
-                    // Perform actions for anonymous user
-                    _LoggedIn.Text = string.Empty;
-                    _loggedInOrNot.Text = "Login";
-                    _logOutBtn.Visible = false;
-
-
-                }
-               */
-
-
+              
             }
           
         }
@@ -75,6 +54,11 @@ namespace WH_OnlineShoesShopping
             _Semail.Text = "";
 
         }
+        /// <summary>
+        /// Login Click when clicked and vailidate is correct then login other wise redirect to main page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         protected void _LoginBTN_Click(object sender, EventArgs e)
         {
@@ -95,8 +79,7 @@ namespace WH_OnlineShoesShopping
             else
             {
              
-                Session["user"] = login.Item2;
-              //  _LoggedIn.Text = login.Item2.ToString();
+                Session["user"] = login.Item2;         
                 Response.Redirect("Default.aspx");
               
             }
